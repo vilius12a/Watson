@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kontaktai
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		.login-button {
+			width: 200px;
+			border: 2px solid black;
+			background-color: white;
+			transition: 0.3s;
+		}
+		.login-button:hover {
+			width: 200px;
+			border: 2px solid black;
+			background-color: #c0bfbf;
+		}
+	</style>
+
+	<body style="background-color: #00a8f3">
+		<form method="post">
+
+			{# Top Buttons #}
+			<div class="container-fluid p-3">
+				<div class="btn-group-lg">
+					<a class="btn login-button rounded-0" href="/" role="button">Pradinis</a>
+					<button class="btn login-button rounded-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+						Apie mus
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						<li>
+							<a class="dropdown-item" href="/pricelist">Kainoraštis</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="/info">Informacija</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+		</form>
+	</body>
+{% endblock %}

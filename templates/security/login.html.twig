@@ -5,21 +5,7 @@
 
 {% block body %}
 
-	<style>
-		.login-button {
-			width: 200px;
-			border: 2px solid black;
-			background-color: white;
-			transition: 0.3s;
-		}
-		.login-button:hover {
-			width: 200px;
-			border: 2px solid black;
-			background-color: #c0bfbf;
-		}
-	</style>
-
-	<body style="background-color: #00a8f3">
+	<body style="">
 		<form method="post">
 			{% if error %}
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -33,86 +19,64 @@
 				</div>
 			{% endif %}
 
-			{# Top Buttons #}
-			<div class="container-fluid p-3">
-				<div class="btn-group-lg">
-					<a class="btn login-button rounded-0" href="/" role="button">Pradinis</a>
-					<button class="btn login-button rounded-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-						Apie mus
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<li>
-							<a class="dropdown-item" href="/contacts">Kontaktai</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/pricelist">Kainoraštis</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/info">Informacija</a>
-						</li>
-					</ul>
 
+			<div class="container-fluid" style="margin-top: 10%; margin-bottom: 5%">
+				<div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
+					Prašome prisijungti:
 				</div>
 
-				{# Login form #}
-				<div class="container-fluid" style="margin-top: 10%; margin-bottom: 5%">
-					<div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
-						Prašome prisijungti:
+				<form>
+					<div class="form-group mx-auto" style="width: 485px;">
+						<label for="inputEmail" style="font-weight: bold;">
+							El. pašto adresas</label>
+						<input type="email" value="{{ last_username }}" name="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Įveskite el. paštą" required autofocus>
+						<small id="emailHelp" class="form-text text-muted">
+							<p style="color: #363636; font-size: 15px; font-style: italic;">
+								*Atkreipkite dėmesį į mažąsias ir didžiąsias raides.</p>
+						</small>
 					</div>
+					<div class="form-group mx-auto" style="width: 485px;">
+						<label for="inputPassword" style="font-weight: bold;">
+							Slaptažodis</label>
+						<input type="password" name="password" class="form-control" id="inputPassword" placeholder="Įveskite slaptažodį" required>
+					</div>
+					<div class="form-check mx-auto" style="width: 485px;">
+						<input type="checkbox" class="form-check-input" id="rememberMeCheck">
+						<label class="form-check-label" for="rememberMeCheck">Prisiminti mane</label>
+					</div>
+					<div class="row justify-content-center m-2">
+						<button type="submit" class="btn btn-dark" style="width: 100px;">Prisijungti</button>
+					</div>
+				</form>
 
-					<form>
-						<div class="form-group mx-auto" style="width: 485px;">
-							<label for="inputEmail" style="font-weight: bold;">
-								El. pašto adresas</label>
-							<input type="email" value="{{ last_username }}" name="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Įveskite el. paštą" required autofocus>
-							<small id="emailHelp" class="form-text text-muted">
-								<p style="color: #363636; font-size: 15px; font-style: italic;">
-									*Atkreipkite dėmesį į mažąsias ir didžiąsias raides.</p>
-							</small>
-						</div>
-						<div class="form-group mx-auto" style="width: 485px;">
-							<label for="inputPassword" style="font-weight: bold;">
-								Slaptažodis</label>
-							<input type="password" name="password" class="form-control" id="inputPassword" placeholder="Įveskite slaptažodį" required>
-						</div>
-						<div class="form-check mx-auto" style="width: 485px;">
-							<input type="checkbox" class="form-check-input" id="rememberMeCheck">
-							<label class="form-check-label" for="rememberMeCheck">Prisiminti mane</label>
-						</div>
-						<div class="row justify-content-center m-2">
-							<button type="submit" class="btn btn-dark" style="width: 100px;">Prisijungti</button>
-						</div>
-					</form>
+				{# <label for="inputEmail">Email</label>
+																																																																																																																														                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+																																																																																																																														                <label for="inputPassword">Password</label>
+																																																																																																																														                <input type="password" name="password" id="inputPassword" class="form-control" required> #}
 
-					{# <label for="inputEmail">Email</label>
-																																													                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-																																													                <label for="inputPassword">Password</label>
-																																													                <input type="password" name="password" id="inputPassword" class="form-control" required> #}
+				<input
+				type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-					<input
-					type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-				{#
-																																				                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																																				                    See https://symfony.com/doc/current/security/remember_me.html
-																																				
-																																				                    <div class="checkbox mb-3">
-																																				                        <label>
-																																				                            <input type="checkbox" name="_remember_me"> Remember me
-																																				                        </label>
-																																				                    </div>
-																																				                #}
-				</div>
-
-				{# Bottom line #}
-				{#<div class="row justify-content-center align-items-end">
-																																					<hr style="border: 3px solid #000000; width: 70%">
-																																					<img src="https://media.istockphoto.com/vectors/cartoon-tooth-illustration-vector-id948785620" alt="Logo" style="width: 250px; height: 200px;">
-																																				</div>
-																																				<div class="row justify-content-center" style="font-size: 24px">
-																																					+37060606060 paštas@paštyzas.pašt
-																																				</div>#}
+			{#
+																																																																																																	                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																																																																																																	                    See https://symfony.com/doc/current/security/remember_me.html
+																																																																																																	
+																																																																																																	                    <div class="checkbox mb-3">
+																																																																																																	                        <label>
+																																																																																																	                            <input type="checkbox" name="_remember_me"> Remember me
+																																																																																																	                        </label>
+																																																																																																	                    </div>
+																																																																																																	                #}
 			</div>
-		</form>
+
+			{# Bottom line #}
+			{#<div class="row justify-content-center align-items-end">
+																																																																																																		<hr style="border: 3px solid #000000; width: 70%">
+																																																																																																		<img src="https://media.istockphoto.com/vectors/cartoon-tooth-illustration-vector-id948785620" alt="Logo" style="width: 250px; height: 200px;">
+																																																																																																	</div>
+																																																																																																	<div class="row justify-content-center" style="font-size: 24px">
+																																																																																																		+37060606060 paštas@paštyzas.pašt
+																																																																																																	</div>#}
+		</div>
 	</body>
-{% endblock %}
+</form></body>{% endblock %}

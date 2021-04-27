@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Settings!{% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+        <div class="mb-3">
+            <a href="{{ path('app_user_change_password') }}"><button>Change password</button></a>
+        </div>
+
+
+        {{ form_start(SettingsForm) }}
+        {{ form_row(SettingsForm.email, {
+            label:'Vardas',
+        }) }}
+        {{ form_row(SettingsForm.recieveNotifications, {
+            label:'Gauti pranešimus',
+        }) }}
+        <button type="submit" class="btn">Išsaugoti</button>
+        {{ form_end(SettingsForm) }}
+
+    {% endif %}
+
+{% endblock %}

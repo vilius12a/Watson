@@ -145,9 +145,9 @@
 
 			<div class="items-center align-text p-6 dropdown">
 			{% if app.user %}
-			<button class="bordertest loginRegister ">{{ app.user.username }}</button>
+			<a style="text-decoration:none;" href="{{ path('app_user') }}"><button class="bordertest loginRegister ">{{ app.user.username }}</button></a>
 					<div class="dropdown-content">
-					<a class="bordertest loginRegister" href="{{ path('app_user_change_password') }}">
+					<a class="bordertest loginRegister" href="{{ path('app_user_settings') }}">
 							Nustatymai</a>
 						<a class="bordertest loginRegister" href="{{ path('app_logout') }}">
 							Atsijungti</a>

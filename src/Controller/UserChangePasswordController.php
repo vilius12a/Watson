@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Form\ChangePasswordFormType;
+use App\Form\UserSettingsFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,5 +48,39 @@ class UserChangePasswordController extends AbstractController
 
 
         return $this->render('user/changePassword.html.twig', ['ChangePasswordForm' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/user/settings", name="app_user_settings")
+     */
+    public function settings(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $user = $this->getUser();
+        $form = $this->createForm(UserSettingsFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $user->setRecieveNotifications(
+                    $form->get('recieveNotifications')->getData()
+            );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('app_user_settings');
+        }
+
+
+
+
+
+        return $this->render('user/settings.html.twig', ['SettingsForm' => $form->createView()]);
     }
 }

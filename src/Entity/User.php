@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -36,6 +37,26 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @var bool
+     * @ORM\Column(name="recieveNotifications", type="boolean", options={"default" : true})
+     */
+    private $recieveNotifications;
+
+       public function getRecieveNotifications(): ?bool
+    {
+        if($this->recieveNotifications == 1)
+        return true;
+        return false;
+    }
+
+    public function setRecieveNotifications(bool $recieve): self
+    {
+        $this->recieveNotifications = $recieve;
+        return $this;
+    }
+
 
     public function getId(): ?int
     {

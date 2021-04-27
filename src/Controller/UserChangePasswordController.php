@@ -65,6 +65,9 @@ class UserChangePasswordController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $user->setName($form->get('name')->getData());
+            $user->setSurname($form->get('surname')->getData());
+            $user->setPhone($form->get('phone')->getData());
             $user->setRecieveNotifications(
                     $form->get('recieveNotifications')->getData()
             );

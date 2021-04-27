@@ -14,8 +14,17 @@
 
 
         {{ form_start(SettingsForm) }}
-        {{ form_row(SettingsForm.email, {
+        {{ form_row(SettingsForm.name, {
             label:'Vardas',
+        }) }}
+        {{ form_row(SettingsForm.surname, {
+            label:'Pavardė',
+        }) }}
+        {{ form_row(SettingsForm.phone, {
+            label:'Telefono numeris',
+        }) }}
+        {{ form_row(SettingsForm.email, {
+            label:'Paštas',
         }) }}
         {{ form_row(SettingsForm.recieveNotifications, {
             label:'Gauti pranešimus',

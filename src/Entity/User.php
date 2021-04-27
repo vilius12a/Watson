@@ -44,7 +44,57 @@ class User implements UserInterface
      */
     private $recieveNotifications;
 
-       public function getRecieveNotifications(): ?bool
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $surname;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $phone;
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function setName($name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+    public function setSurname($surname): self
+    {
+        $this->surname = $surname;
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+    public function setPhone($phone): self
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+
+
+    public function getRecieveNotifications(): ?bool
     {
         if($this->recieveNotifications == 1)
         return true;

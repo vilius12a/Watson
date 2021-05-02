@@ -4,12 +4,26 @@
 {% endblock %}
 
 {% block body %}
-	
-	<body style="background-color: #00a8f3">
-		
-		<div class="p-6 mb-25">
-			<p class="rcorners">Information about us</p>
-		</div>
+	<style>
 
-	</body>
-{% endblock %}
+		.p-6 {
+			padding: 1rem;
+		}
+
+		.mb-25 {
+			margin-bottom: 250px
+		}
+
+		.rcorners {
+			border-radius: 40px;
+			border: 6px solid #00a8f3;
+			padding: 20px;
+			width: 500px;
+			height: 300px;
+			background-color: white;
+		}
+	</style>
+<div class="p-6 mb-25">
+	<p class="rcorners">Information about us</p>
+</div>{% endblock %}
+

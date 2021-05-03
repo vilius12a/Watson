@@ -5,42 +5,59 @@
 
 {% block body %}
 
-	<style>
-		.login-button {
-			width: 200px;
-			border: 2px solid black;
-			background-color: white;
-			transition: 0.3s;
-		}
-		.login-button:hover {
-			width: 200px;
-			border: 2px solid black;
-			background-color: #c0bfbf;
-		}
-	</style>
+<style>
+	thead{
+		font-size: 60px;
+		font-weight: normal;
+		text-align: center;
+	}
 
-	<body style="background-color: #00a8f3">
-		<form method="post">
+	.header {
+		padding: 30px;
+		text-align: center;
+		font-size: 35px;
+		margin-top: 20px;
+	}
 
-			{# Top Buttons #}
-			<div class="container-fluid p-3">
-				<div class="btn-group-lg">
-					<a class="btn login-button rounded-0" href="/" role="button">Pradinis</a>
-					<button class="btn login-button rounded-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-						Apie mus
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<li>
-							<a class="dropdown-item" href="/contacts">Kontaktai</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/pricelist">Kainoraštis</a>
-						</li>
-					</ul>
+	.column {
+		float: left;
+		width: 33.33%;
+		padding: 10px;
+	}
 
-				</div>
-			</div>
+	.row:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
 
-		</form>
-	</body>
+
+
+</style>
+
+
+
+<div class="header">
+  <h2>Kodėl rinktis mus?</h2>
+</div>
+
+<div class="row">
+  	<div class="column" style="background-color:#24b8f7;">
+		<h2>Geriausi specialistai</h2>
+		Mūsų kolektyvas surinktas tik iš geriausių, aukštų kvalivikacijų specialistų. Jie gebės jus konsultuoti visais iškilusiais klausimais.
+		...
+	</div>
+  	<div class="column" style="background-color:#24c8f7;">
+		<h2>Naujausia įranga</h2>
+		Naudojame pačią naujausią įrangą kuri leidžia pamiršti senus gydymo metodus. Su šia įranga užtikriname aukščiausios kokybės priežiūrą.
+		...
+	</div>
+  	<div class="column" style="background-color:#24d8f7;">
+		<h2>Maloni aplinka</h2>
+		Stengiamės kurti molonią aplinką tiek pacientams tiek darbuotojams. Palaikome optimalią kambario temperatūrą, drėgmę ir t.t.
+		...
+	</div> 
+</div>
+
+
 {% endblock %}

@@ -5,32 +5,54 @@
 {% block body %}
 
     {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-        <div class="mb-3">
-            <a href="{{ path('app_user_change_password') }}"><button>Change password</button></a>
-        </div>
 
+    <div class="container-fluid" style="margin-top: 5%; margin-bottom: 5%">
+
+        <div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
+            Jūsų informacijos naujinimas:
+        </div>
 
         {{ form_start(SettingsForm) }}
-        {{ form_row(SettingsForm.name, {
-            label:'Vardas',
-        }) }}
-        {{ form_row(SettingsForm.surname, {
-            label:'Pavardė',
-        }) }}
-        {{ form_row(SettingsForm.phone, {
-            label:'Telefono numeris',
-        }) }}
-        {{ form_row(SettingsForm.email, {
-            label:'Paštas',
-        }) }}
-        {{ form_row(SettingsForm.recieveNotifications, {
-            label:'Gauti pranešimus',
-        }) }}
-        <button type="submit" class="btn">Išsaugoti</button>
+        <div class="form-group mx-auto" style="width: 485px;">
+            {{ form_row(SettingsForm.name, {
+                label: 'Jūsų vardas',
+                label_attr: { style: 'font-weight: bold' },
+                attr: { class: 'form-control', placeholder: 'įveskite naują vardą' },
+            }) }}
+            <div class="p-2"></div>
+            {{ form_row(SettingsForm.surname, {
+                label:'Jūsų pavardė',
+                label_attr: { style: 'font-weight: bold' },
+                attr: { class: 'form-control', placeholder: 'įveskite naują pavardę' }
+            }) }}
+            <div class="p-2"></div>
+            {{ form_row(SettingsForm.phone, {
+                label:'Jūsų telefono numeris',
+                label_attr: { style: 'font-weight: bold' },
+                attr: { class: 'form-control', placeholder: 'įveskite naują telefono numerį' }
+            }) }}
+            <div class="p-2"></div>
+            {{ form_row(SettingsForm.email, {
+                label:'Jūsų paštas',
+                label_attr: { style: 'font-weight: bold' },
+                attr: { class: 'form-control' }
+            }) }}
+            <div class="p-2"></div>
+            {{ form_row(SettingsForm.recieveNotifications, {
+                label:'Gauti pranešimus',
+                label_attr: { style: 'font-weight: bold' },
+            }) }}
+        </div>
+
+        <div class="row justify-content-center m-2">
+            <button type="submit" class="btn btn-dark" style="width: 100px;">Išsaugoti</button>
+        </div>
         {{ form_end(SettingsForm) }}
+
+        <div class="row justify-content-center m-2", style="padding-top: 50px;">
+            <a class="btn btn-lg btn-primary" style="width: 200px;" href="{{ path('app_user_change_password') }}">Pakeisti slaptažodį</a>
+        </div>
+    </div>
 
     {% endif %}
 

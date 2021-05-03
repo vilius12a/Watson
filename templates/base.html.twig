@@ -46,7 +46,7 @@
 
 
 </head>
-<body style="background-color: #00a8f3">
+<body style="background-color: #00a8f3; margin: 12px;">
 <header>
 	<div class="flex justify-between">
 
@@ -55,7 +55,7 @@
 				<a class="btn login-button rounded-0" href="/" role="button">Pradinis</a>
 				<a class="btn login-button rounded-0" href="">Galerija</a>
 			</div>
-			<div class="dropdown ">
+			<div class="dropdown" style="margin-left: 5px;">
 				<button class="btn login-button rounded-0 justify-between" href="">Apie mus</button>
 				<div class="dropdown-content">
 					<a class="dropdown-item rounded-0" href="/contract">
@@ -72,7 +72,7 @@
 			<div class="dropdown ">
 				<button class="btn  rounded-0 login-button">{{ app.user.username }}</button>
 				<div class="dropdown-content">
-					<a class="dropdown-item rounded-0" href="{{ path('app_user_change_password') }}">
+					<a class="dropdown-item rounded-0" href="{{ path('app_user_settings') }}">
 						Nustatymai</a>
 					<a class="dropdown-item rounded-0" href="{{ path('app_logout') }}">
 						Atsijungti</a>
@@ -116,7 +116,7 @@
 		<p>VI - VII nedirbame</p>
 	</div>
 	<div>
-		<img src="logo.png">
+		<img src="/logo.png">
 	</div>
 </footer>
 </body>

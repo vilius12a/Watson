@@ -7,15 +7,42 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <div  class="container-fluid" Style="margin-top: 10%; margin-bottom: 5%">
+                <div class="row m-5 justify-content-center" Style="font-weight: bold; font-size: 40px;">
+                    Prašome prisiregistruoti:
+                </div>
+    
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+    <div class ="form-group mx-auto" style="width: 485px;">
+        {{ form_row(registrationForm.email, {
+            label: 'El. pašto adresas',
+            label_attr: { style : 'font-weight: bold'},
+            attr: { class : 'form-control', placeholder : 'Įveskite el. paštą.'}
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+        <small id="emailHelp" class="form-text text-muted">
+				<p style="color: #363636; font-size: 15px; font-style: italic;">
+					*Atkreipkite dėmesį į mažąsias ir didžiąsias raides.
+                </p>
+		</small>
+    </div>
+    <div class ="form-group mx-auto" style="width: 485px;">
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Slaptažodis',
+            label_attr: { style : 'font-weight: bold'},
+            attr: { class : 'form-control', placeholder : 'Įveskite slaptažodį'}
+        }) }}
+    </div>
+    <div class="form-check mx-auto" style="width: 485px;">
+        {{ form_row(registrationForm.agreeTerms, {
+            label: 'Sutinku su sąlygomis  ',
+            attr: { class : 'form-check-input'}
+        }) }}
+    </div>
+    <div class="row justify-content-center m-2">
+        <button type="submit" class="btn btn-dark" style="width: 100px;">Registruotis</button>
+    </div>
     {{ form_end(registrationForm) }}
+
+</div>
 {% endblock %}

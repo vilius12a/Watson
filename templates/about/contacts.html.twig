@@ -6,41 +6,89 @@
 {% block body %}
 
 	<style>
-		.login-button {
-			width: 200px;
-			border: 2px solid black;
+		.rcorners {
+			border-radius: 30px;
+			border: 6px solid #00a8f3;
+			padding: 20px;
+			margin-left: -25px;
+			width: 300px;
+			height: 175px;
 			background-color: white;
-			transition: 0.3s;
-		}
-		.login-button:hover {
-			width: 200px;
-			border: 2px solid black;
-			background-color: #c0bfbf;
 		}
 	</style>
 
 	<body style="background-color: #00a8f3">
 		<form method="post">
-
-			{# Top Buttons #}
-			<div class="container-fluid p-3">
-				<div class="btn-group-lg">
-					<a class="btn login-button rounded-0" href="/" role="button">Pradinis</a>
-					<button class="btn login-button rounded-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-						Apie mus
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<li>
-							<a class="dropdown-item" href="/pricelist">Kainoraštis</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/info">Informacija</a>
-						</li>
-					</ul>
-
+			<div class="d-flex justify-content-center mt-3 ">
+				<div>
+					<img src="Docter.jpg" alt="" width="235" height="250">
+					<div class="bg-white rcorners text-center">
+						<h3>Jonas Jonaitis</h3>
+						<p>Vadovas</p>
+						<p>Numeris:862232232</p>
+						<p>j.jonaitis@dent.lt</p>
+					</div>
 				</div>
 			</div>
+			<div class="d-flex justify-content-between mt-3">
+				<div class="ms-3">
+					<img src="odontologas.jpg" alt="" width="235" height="250">
+					<div class="bg-white rcorners text-center">
+						<h3>Petras Petraitis</h3>
+						<p>Odontologas</p>
+						<p>Numeris:862232232</p>
+						<p>p.petraitis@dent.lt</p>
 
-		</form>
+					</div>
+				</div>
+				<div>
+					<img src="odontologe.jpg" alt="" width="235" height="250">
+					<div class="bg-white rcorners text-center">
+						<h3>Marija Janina</h3>
+						<p>Odontologė</p>
+						<p>Numeris:862232232</p>
+						<p>m.janin@dent.lt</p>
+					</div>
+				</div>
+				<div>
+					<img src="odontologas2.jpg" alt="" width="235" height="250">
+					<div class="bg-white rcorners text-center">
+						<h3>Marius Zapovid</h3>
+						<p>Odontologas</p>
+						<p>Numeris:862231232</p>
+						<p>m.zapovid@dent.lt</p>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-between mt-3">
+				<div class="ms-3">
+					<img src="higiena1.jpg" alt="" width="235" height="250">
+					<div class="bg-white rcorners text-center">
+						<h3>Ana Mankaitė</h3>
+						<p>Burnos higienistė</p>
+						<p>Numeris:865532232</p>
+						<p>AnaMan@dent.lt</p>
+					</div>
+				</div>
+				<div>
+					<img src="higiena.jpg" alt="" width="235" height="250">
+					<div class="bg-white rcorners text-center">
+						<h3>Kentas Klanauskas</h3>
+						<p>Burnos higienistas</p>
+						<p>Numeris:866662321</p>
+						<p>KKauskas@dent.lt</p>
+					</div>
+				</div>
+				<div>
+					<img src="higiena2.jpg" alt="" width="235" height="250">
+					<div class="bg-white rcorners text-center">
+						<h3>Viktorija Linsaitė</h3>
+						<p>Burnos higienistėovas</p>
+						<p>Numeris:862236662</p>
+						<p>v.linkauskaite@dent.lt</p>
+					</div>
+				</div>
+			</div>
+		</body>
 	</body>
-{% endblock %}
+</form></body>{% endblock %}

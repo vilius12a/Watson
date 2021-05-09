@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Procedures!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_procedure_add') }}">Prideti tipa</a>
+        <table>
+            <thead>
+            <tr>
+                <td>Type</td>
+                <td>Cost</td>
+                <td>Action</td>
+            </tr>
+            </thead>
+<tbody>
+{% for type in types %}
+    <tr>
+    <td>{{ type.name }}</td>
+    <td>{{ type.cost }}</td>
+    <td>{{ type.id }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+        </table>
+
+
+{% endblock %}

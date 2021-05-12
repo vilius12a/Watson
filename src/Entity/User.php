@@ -15,6 +15,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    public const ROLE_USER = 'ROLE_USER';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
+    public const ROLE_DOCTOR = 'ROLE_DOCTOR';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -184,5 +188,10 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function __toString()
+    {
+        return $this->getName() . ' ' . $this->getSurname();
     }
 }

@@ -15,6 +15,11 @@ class Meeting
     public const STATUS_CREATED = 1;
     public const STATUS_CANCELED = 2;
     public const STATUS_ENDED = 3;
+    public const STATUS_DESCRIPTIONS = [
+        1 => 'Susitikimas sukurtas',
+        2 => 'Susitikimas atšauktas',
+        3 => 'Susitikimas įvyko'
+    ];
 
     /**
      * @ORM\Id

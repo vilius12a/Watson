@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Meeting;
+use App\Entity\User;
 use App\Form\MeetingType;
 use App\Repository\MeetingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,16 +13,34 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/meeting")
+ * @method User getUser()
  */
 class MeetingController extends AbstractController
 {
+    private MeetingRepository $meetingRepository;
+
+    /**
+     * @param MeetingRepository $meetingRepository
+     */
+    public function __construct(MeetingRepository $meetingRepository)
+    {
+        $this->meetingRepository = $meetingRepository;
+    }
+
+
     /**
      * @Route("/", name="meeting_index", methods={"GET"})
      */
-    public function index(MeetingRepository $meetingRepository): Response
+    public function index(): Response
     {
+        if ($this->isGranted(User::ROLE_DOCTOR)) {
+            $meetings = $this->meetingRepository->findByRoleAndUser(User::ROLE_DOCTOR, $this->getUser());
+        } else {
+            $meetings = $this->meetingRepository->findByRoleAndUser(User::ROLE_USER, $this->getUser());
+        }
+
         return $this->render('meeting/index.html.twig', [
-            'meetings' => $meetingRepository->findAll(),
+            'meetings' => $meetings,
         ]);
     }
 
@@ -30,6 +49,8 @@ class MeetingController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_DOCTOR');
+
         $meeting = new Meeting();
         $form = $this->createForm(MeetingType::class, $meeting);
         $form->handleRequest($request);
@@ -63,6 +84,8 @@ class MeetingController extends AbstractController
      */
     public function edit(Request $request, Meeting $meeting): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_DOCTOR');
+
         $form = $this->createForm(MeetingType::class, $meeting);
         $form->handleRequest($request);
 
@@ -83,6 +106,8 @@ class MeetingController extends AbstractController
      */
     public function delete(Request $request, Meeting $meeting): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_DOCTOR');
+
         if ($this->isCsrfTokenValid('delete'.$meeting->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($meeting);

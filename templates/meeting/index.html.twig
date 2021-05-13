@@ -30,7 +30,9 @@
                 </th>
                 <td>
                     <a href="{{ path('meeting_show', {'id': meeting.id}) }}">show</a>
-                    <a href="{{ path('meeting_edit', {'id': meeting.id}) }}">edit</a>
+                    {% if is_granted('ROLE_DOCTOR') %}
+                        <a href="{{ path('meeting_edit', {'id': meeting.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -41,5 +43,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('meeting_new') }}">Create new</a>
+    {% if is_granted('ROLE_DOCTOR') %}
+        <a href="{{ path('meeting_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

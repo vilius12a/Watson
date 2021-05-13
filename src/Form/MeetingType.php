@@ -46,7 +46,7 @@ class MeetingType extends AbstractType
                 [
                     'class' => User::class,
                     'query_builder' => function (UserRepository $userRepository) {
-                        return $userRepository->getAllWithRoleQB(User::ROLE_USER);
+                        return $userRepository->getAllWithRoleQB();
                     },
                     'constraints' => [
                         new NotBlank(),

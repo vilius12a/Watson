@@ -39,15 +39,20 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * @param string $role
+     * @param string|null $role
      *
      * @return QueryBuilder
      */
-    public function getAllWithRoleQB(string $role): QueryBuilder
+    public function getAllWithRoleQB(?string $role = null): QueryBuilder
     {
-        return $this->createQueryBuilder('u')
-            ->where('JSON_CONTAINS(u.roles, :role) = 1')
-            ->setParameter('role', '"'.$role.'"')
+        $qb = $this->createQueryBuilder('u')
             ->orderBy('u.id');
+
+        if ($role !== null) {
+            $qb->where('JSON_CONTAINS(u.roles, :role) = 1')
+                ->setParameter('role', '"'.$role.'"');
+        }
+
+        return $qb;
     }
 }

@@ -72,10 +72,12 @@
 			<div class="dropdown ">
 				<button class="btn  rounded-0 login-button">{{ app.user.username }}</button>
 				<div class="dropdown-content">
-					<a class="dropdown-item rounded-0" href="{{ path('app_user_settings') }}">
-						Nustatymai</a>
-					<a class="dropdown-item rounded-0" href="{{ path('app_logout') }}">
-						Atsijungti</a>
+					<a class="dropdown-item rounded-0" href="{{ path('meeting_index') }}">Mano susitikimai</a>
+					{% if is_granted('ROLE_DOCTOR') %}
+						<a class="dropdown-item rounded-0" href="{{ path('procedure_index') }}">Procedūros</a>
+					{% endif %}
+					<a class="dropdown-item rounded-0" href="{{ path('app_user_settings') }}">Nustatymai</a>
+					<a class="dropdown-item rounded-0" href="{{ path('app_logout') }}">Atsijungti</a>
 				</div>
 			</div>
 

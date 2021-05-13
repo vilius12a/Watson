@@ -20,7 +20,8 @@
 
     <a href="{{ path('meeting_index') }}">back to list</a>
 
-    <a href="{{ path('meeting_edit', {'id': meeting.id}) }}">edit</a>
-
-    {{ include('meeting/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_DOCTOR') %}
+        <a href="{{ path('meeting_edit', {'id': meeting.id}) }}">edit</a>
+        {{ include('meeting/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

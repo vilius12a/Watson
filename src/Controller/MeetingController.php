@@ -9,6 +9,9 @@ use App\Repository\MeetingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -47,7 +50,7 @@ class MeetingController extends AbstractController
     /**
      * @Route("/new", name="meeting_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, MailerInterface $mailer): Response
     {
         $this->denyAccessUnlessGranted('ROLE_DOCTOR');
 
@@ -60,6 +63,23 @@ class MeetingController extends AbstractController
             $entityManager->persist($meeting);
             $entityManager->flush();
 
+            $patient = $meeting->getPatient();
+
+            if ($patient->getRecieveNotifications()) {
+
+                $email = (new TemplatedEmail())
+                    ->from(new Address('jokaastest@gmail.com', 'Watson'))
+                    ->to($patient->getEmail())
+                    ->replyTo('noreply@jokaastest.lt')
+                    //->priority(Email::PRIORITY_HIGH)
+                    ->subject('Sukurtas naujas susitikimas')
+                    ->htmlTemplate('emails/newMeeting.html.twig')
+                    ->context([
+                        'meeting' => $meeting
+                        ]);
+
+                //$mailer->send($email);
+            }
             return $this->redirectToRoute('meeting_index');
         }
 
@@ -68,6 +88,7 @@ class MeetingController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     /**
      * @Route("/{id}", name="meeting_show", methods={"GET"})
@@ -108,7 +129,7 @@ class MeetingController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_DOCTOR');
 
-        if ($this->isCsrfTokenValid('delete'.$meeting->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $meeting->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($meeting);
             $entityManager->flush();

@@ -1,125 +1,467 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>
-		{% block title %}Welcome!
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 		{% endblock %}
-	</title>
-	{% block stylesheets %}
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-	{% endblock %}
 
-	{% block javascripts %}
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-	{% endblock %}
-	<style>
-		.justify-between {
-			justify-content: space-between;
-		}
-		.flex {
-			display: flex;
-		}
-		.login-button {
-			width: 200px;
-			border: 2px solid black;
-			background-color: white;
-			transition: 0.3s;
-		}
-		.login-button:hover .dropdown-content {
-			width: 200px;
-			border: 2px solid black;
-			background-color: #c0bfbf;
-		}
-		.dropdown-content {
-			display: none;
-			position: absolute;
-			background-color: #f9f9f9;
-			min-width: 160px;
-			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-			z-index: 1;
-		}
-		.dropdown:hover .dropdown-content {
-			display: block;
-		}
-	</style>
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+		{% endblock %}
+		<style>
+			.justify-between {
+				justify-content: space-between;
+			}
+			.flex {
+				display: flex;
+			}
+			.login-button {
+				width: 200px;
+				border: 2px solid black;
+				background-color: white;
+				transition: 0.3s;
+			}
+			.login-button:hover .dropdown-content {
+				width: 200px;
+				border: 2px solid black;
+				background-color: #c0bfbf;
+			}
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 160px;
+				box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+				z-index: 1;
+			}
+			.dropdown:hover .dropdown-content {
+				display: block;
+			}
+			.winter-is-coming,
+			.snow {
+				z-index: 100;
+				pointer-events: none;
+			}
+			.winter-is-coming {
+				overflow: hidden;
+				position: absolute;
+				top: 0;
+				height: 100%;
+				width: 100%;
+				max-width: 100%;
+			}
+			.snow {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				animation: falling linear infinite both;
+				transform: translate3D(0, -100%, 0);
+			}
+			.snow--near {
+				animation-duration: 10s;
+				background-image: url('https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png');
+				background-size: contain;
+			}
+			.snow--near + .snow--alt {
+				animation-delay: 5s;
+			}
+			.snow--mid {
+				animation-duration: 20s;
+				background-image: url('https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png');
+				background-size: contain;
+			}
+			.snow--mid + .snow--alt {
+				animation-delay: 10s;
+			}
+			.snow--far {
+				animation-duration: 30s;
+				background-image: url('https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-small-1ecd03b1fce08c24e064ff8c0a72c519.png');
+				background-size: contain;
+			}
+			.snow--far + .snow--alt {
+				animation-delay: 15s;
+			}
+			@keyframes falling {
+				0% {
+					transform: translate3D(-7.5%, -100%, 0);
+				}
+				100% {
+					transform: translate3D(7.5%, 100%, 0);
+				}
+			}
+
+			leaves {
+				position: relative;
+				top: -50px;
+				width: 100%;
+				text-align: right;
+			}
+
+			#leaves i {
+				display: inline-block;
+				width: 200px;
+				height: 150px;
+				background: linear-gradient(to bottom right, #309900, #005600);
+				transform: skew(20deg);
+				border-radius: 5% 40% 70%;
+				box-shadow: inset 0 0 1px #222;
+				border: 1px solid #333;
+				z-index: 1;
+				-webkit-animation: falling 5s 0s infinite;
+			}
+
+			#leaves i:nth-of-type(2n) {
+				-webkit-animation: falling2 5s 0s infinite;
+			}
+			#leaves i:nth-of-type(3n) {
+				-webkit-animation: falling3 5s 0s infinite;
+			}
+
+			#leaves i:before {
+				position: absolute;
+				content: '';
+				top: 117px;
+				right: 9px;
+				height: 27px;
+				width: 32px;
+				transform: rotate(49deg);
+				border-radius: 0 15% 15% 0;
+				border-top: 1px solid #222;
+				border-bottom: 1px solid #222;
+				border-left: 0 solid #222;
+				border-right: 1px solid #222;
+				background: linear-gradient(to right, rgba(0,100,0,1), #005600);
+				z-index: 1;
+			}
+
+			#leaves i:after {
+				content: '';
+				height: 125px;
+				width: 10px;
+				background: linear-gradient(to right, rgba(0,0,0,.15), rgba(0,0,0,0));
+				display: block;
+				transform: rotate(125deg);
+				position: absolute;
+				left: 85px;
+				border-radius: 50%;
+			}
 
 
-</head>
-<body style="background-color: #00a8f3; margin: 12px;">
-<header>
-	<div class="flex justify-between">
+			#leaves i:nth-of-type(n) {
+				height: 23px;
+				width: 30px;
+			}
+			#leaves i:nth-of-type(n):before {
+				width: 7px;
+				height: 5px;
+				top: 17px;
+				right: 1px;
+			}
+			#leaves i:nth-of-type(n):after {
+				width: 2px;
+				height: 17px;
+				left: 12px;
+				top: 0;
+			}
 
-		<div class=" align-text flex justify-between">
-			<div class="">
-				<a class="btn login-button rounded-0" href="/" role="button">Pradinis</a>
-				<a class="btn login-button rounded-0" href="">Galerija</a>
-			</div>
-			<div class="dropdown" style="margin-left: 5px;">
-				<button class="btn login-button rounded-0 justify-between" href="">Apie mus</button>
-				<div class="dropdown-content">
-					<a class="dropdown-item rounded-0" href="/contacts">
-						Kontaktai</a>
-					<a class="dropdown-item rounded-0" href="/pricelist">
-						Kainoraštis</a>
-					<a class="dropdown-item rounded-0" href="/info">
-						Informacija</a>
+			#leaves i:nth-of-type(2n + 1) {
+				height: 11px;
+				width: 16px;
+			}
+			#leaves i:nth-of-type(2n + 1):before {
+				width: 4px;
+				height: 3px;
+				top: 7px;
+				right: 0;
+			}
+			#leaves i:nth-of-type(2n + 1):after {
+				width: 2px;
+				height: 6px;
+				left: 5px;
+				top: 1px;
+			}
+
+			#leaves i:nth-of-type(3n + 2) {
+				height: 17px;
+				width: 23px;
+			}
+			#leaves i:nth-of-type(3n + 2):before {
+				height: 4px;
+				width: 4px;
+				top: 12px;
+				right: 1px;
+			}
+			#leaves i:nth-of-type(3n + 2):after {
+				height: 10px;
+				width: 2px;
+				top: 1px;
+				left: 8px;
+			}
+
+			#leaves i:nth-of-type(n) {
+				-webkit-animation-delay: 1.9s;
+			}
+			#leaves i:nth-of-type(2n) {
+				-webkit-animation-delay: 3.9s;
+			}
+			#leaves i:nth-of-type(3n) {
+				-webkit-animation-delay: 2.3s;
+			}
+			#leaves i:nth-of-type(4n) {
+				-webkit-animation-delay: 4.4s;
+			}
+			#leaves i:nth-of-type(5n) {
+				-webkit-animation-delay: 5s;
+			}
+			#leaves i:nth-of-type(6n) {
+				-webkit-animation-delay: 3.5s;
+			}
+			#leaves i:nth-of-type(7n) {
+				-webkit-animation-delay: 2.8s;
+			}
+			#leaves i:nth-of-type(8n) {
+				-webkit-animation-delay: 1.5s;
+			}
+			#leaves i:nth-of-type(9n) {
+				-webkit-animation-delay: 3.3s;
+			}
+			#leaves i:nth-of-type(10n) {
+				-webkit-animation-delay: 2.5s;
+			}
+			#leaves i:nth-of-type(11n) {
+				-webkit-animation-delay: 1.2s;
+			}
+			#leaves i:nth-of-type(12n) {
+				-webkit-animation-delay: 4.1s;
+			}
+			#leaves i:nth-of-type(13n) {
+				-webkit-animation-delay: 1s;
+			}
+			#leaves i:nth-of-type(14n) {
+				-webkit-animation-delay: 4.7s;
+			}
+			#leaves i:nth-of-type(15n) {
+				-webkit-animation-delay: 3s;
+			}
+
+			#leaves i:nth-of-type(n) {
+				background: linear-gradient(to bottom right, #309900, #005600);
+			}
+			#leaves i:nth-of-type(2n + 2) {
+				background: linear-gradient(to bottom right, #5e9900, #2b5600);
+			}
+			#leaves i:nth-of-type(4n + 1) {
+				background: linear-gradient(to bottom right, #990, #564500);
+			}
+
+			#leaves i:nth-of-type(n) {
+				opacity: .7;
+			}
+			#leaves i:nth-of-type(3n + 1) {
+				opacity: .5;
+			}
+			#leaves i:nth-of-type(3n + 2) {
+				opacity: .3;
+			}
+
+			#leaves i:nth-of-type(n) {
+				transform: rotate(180deg);
+			}
+
+
+			#leaves i:nth-of-type(n) {
+				-webkit-animation-timing-function: ease-in-out;
+			}
+
+			@-webkit-keyframes falling {
+
+				0% {
+					-webkit-transform: translate3d(300, 0, 0) rotate(0deg);
+				}
+
+				100% {
+					-webkit-transform: translate3d(-350px, 700px, 0) rotate(90deg);
+					opacity: 0;
+				}
+			}
+
+			@-webkit-keyframes falling3 {
+				0% {
+					-webkit-transform: translate3d(0, 0, 0) rotate(-20deg);
+				}
+
+				100% {
+					-webkit-transform: translate3d(-230px, 640px, 0) rotate(-70deg);
+					opacity: 0;
+				}
+			}
+
+			@-webkit-keyframes falling2 {
+				0% {
+					-webkit-transform: translate3d(0, 0, 0) rotate(90deg);
+				}
+
+				100% {
+					-webkit-transform: translate3d(-400px, 680px, 0) rotate(0deg);
+					opacity: 0;
+				}
+			}
+		</style>
+
+
+	</head>
+	<body style="background-color: #00a8f3; margin: 12px;">
+		<header>
+
+			<!-- Cia reikia pakeisti datas kad pasikeitu animacijos  -->
+			{% set winter = '2021-05-14 20:04:20'|date("Y-m-d H:i:s") %}
+			{% set spring = '2021-05-14 20:03:50'|date("Y-m-d H:i:s") %}
+			{% set temp="now"|date("Y-m-d H:i:s","Europe/Vilnius")%}
+			{%  if temp >= winter %}
+				<div class="winter-is-coming">
+
+					<div class="snow snow--near"></div>
+					<div class="snow snow--near snow--alt"></div>
+
+					<div class="snow snow--mid"></div>
+					<div class="snow snow--mid snow--alt"></div>
+
+					<div class="snow snow--far"></div>
+					<div class="snow snow--far snow--alt"></div>
 				</div>
-			</div>
-		</div>
+			{% endif %}
 
-		{% if app.user %}
-			<div class="dropdown ">
-				<button class="btn  rounded-0 login-button">{{ app.user.username }}</button>
-				<div class="dropdown-content">
-					<a class="dropdown-item rounded-0" href="{{ path('meeting_index') }}">Mano susitikimai</a>
-					{% if is_granted('ROLE_DOCTOR') %}
-						<a class="dropdown-item rounded-0" href="{{ path('procedure_index') }}">Procedūros</a>
-					{% endif %}
-					<a class="dropdown-item rounded-0" href="{{ path('app_user_settings') }}">Nustatymai</a>
-					<a class="dropdown-item rounded-0" href="{{ path('app_logout') }}">Atsijungti</a>
+			{%  if temp >= spring and temp<winter%}
+				<div id="leaves">
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
 				</div>
+			{% endif %}
+			<div class="flex justify-between">
+
+				<div class=" align-text flex justify-between">
+					<div class="">
+						<a class="btn login-button rounded-0" href="/" role="button">Pradinis</a>
+						<a class="btn login-button rounded-0" href="">Galerija</a>
+					</div>
+					<div class="dropdown" style="margin-left: 5px;">
+						<button class="btn login-button rounded-0 justify-between" href="">Apie mus</button>
+						<div class="dropdown-content">
+							<a class="dropdown-item rounded-0" href="/contacts">
+								Kontaktai</a>
+							<a class="dropdown-item rounded-0" href="/pricelist">
+								Kainoraštis</a>
+							<a class="dropdown-item rounded-0" href="/info">
+								Informacija</a>
+						</div>
+					</div>
+				</div>
+
+				{% if app.user %}
+					<div class="dropdown ">
+						<button class="btn  rounded-0 login-button">{{ app.user.username }}</button>
+						<div class="dropdown-content">
+							<a class="dropdown-item rounded-0" href="{{ path('meeting_index') }}">Mano susitikimai</a>
+							{% if is_granted('ROLE_DOCTOR') %}
+								<a class="dropdown-item rounded-0" href="{{ path('procedure_index') }}">Procedūros</a>
+							{% endif %}
+							<a class="dropdown-item rounded-0" href="{{ path('app_user_settings') }}">Nustatymai</a>
+							<a class="dropdown-item rounded-0" href="{{ path('app_logout') }}">Atsijungti</a>
+						</div>
+					</div>
+
+					<div class="dropdown-content"></div>
+				{% else %}
+					<div class="">
+						<a class="btn  rounded-0 login-button" href="{{ path('app_login') }}">
+							Prisijungti
+							<br></a>
+						<a class="btn  rounded-0 login-button" href="{{ path('app_register') }}">
+							Registruotis
+							<br></a>
+					</div>
+				{% endif %}
+
 			</div>
-
-		<div class="dropdown-content">
-
-
-		</div>
-		{% else %}
-		<div class="">
-			<a class="btn  rounded-0 login-button" href="{{ path('app_login') }}">
-				Prisijungti
-				<br></a>
-			<a class="btn  rounded-0 login-button" href="{{ path('app_register') }}">
-				Registruotis
-				<br></a>
-		</div>
-	{% endif %}
-
-	</div>
-</header>
-{% block body %}{% endblock %}
-<hr style="border: 3px solid #000000;">
-<footer class="d-flex justify-content-between">
-	<div></div>
-	<div class="ml-6 align-text">
-		<h2>Kontaktai</h2>
-		<p>8 632 22125</p>
-		<p>mrdentist@dent.lt</p>
-	</div>
-	<div class="align-text">
-		<h2 class="mb-6">Vieta</h2>
-		<p>Studentų g. 50, Kaunas 51368</p>
-	</div>
-	<div class="mr-6 align-text">
-		<h2>Darbo laikas</h2>
-		<p>I - IV 9:00 - 20:00</p>
-		<p>V 9:00 - 18:00</p>
-		<p>VI - VII nedirbame</p>
-	</div>
-	<div>
-		<img src="/logo.png">
-	</div>
-</footer>
-</body>
-</html>
+		</body>
+	</body>
+</html></header>{% block body %}{% endblock %}<hr style="border: 3px solid #000000;"><footer class="d-flex justify-content-between">
+<div></div>
+<div class="ml-6 align-text">
+	<h2>Kontaktai</h2>
+	<p>8 632 22125</p>
+	<p>mrdentist@dent.lt</p>
+</div>
+<div class="align-text">
+	<h2 class="mb-6">Vieta</h2>
+	<p>Studentų g. 50, Kaunas 51368</p>
+</div>
+<div class="mr-6 align-text">
+	<h2>Darbo laikas</h2>
+	<p>I - IV 9:00 - 20:00</p>
+	<p>V 9:00 - 18:00</p>
+	<p>VI - VII nedirbame</p>
+</div>
+<div>
+	<img src="/logo.png">
+</div></footer></body></html>

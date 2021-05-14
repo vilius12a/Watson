@@ -318,85 +318,94 @@
 
 	</head>
 	<body style="background-color: #00a8f3; margin: 12px;">
+		<script>
+			document.addEventListener('keydown', function (event) {
+if (event.key === 'z') {
+document.getElementById("leaves").removeAttribute("hidden");
+}
+if (event.key === 'x') {
+document.getElementById("leaves").setAttribute("hidden", "");
+}
+if (event.key === 'c') {
+document.getElementById("snow").removeAttribute("hidden");
+}
+if (event.key === 'v') {
+document.getElementById("snow").setAttribute("hidden", "");
+}
+});
+		</script>
 		<header>
 
-			<!-- Cia reikia pakeisti datas kad pasikeitu animacijos  -->
-			{% set winter = '2021-05-14 20:04:20'|date("Y-m-d H:i:s") %}
-			{% set spring = '2021-05-14 20:03:50'|date("Y-m-d H:i:s") %}
-			{% set temp="now"|date("Y-m-d H:i:s","Europe/Vilnius")%}
-			{%  if temp >= winter %}
-				<div class="winter-is-coming">
+			<div id="snow" hidden class="winter-is-coming">
 
-					<div class="snow snow--near"></div>
-					<div class="snow snow--near snow--alt"></div>
+				<div class="snow snow--near"></div>
+				<div class="snow snow--near snow--alt"></div>
 
-					<div class="snow snow--mid"></div>
-					<div class="snow snow--mid snow--alt"></div>
+				<div class="snow snow--mid"></div>
+				<div class="snow snow--mid snow--alt"></div>
 
-					<div class="snow snow--far"></div>
-					<div class="snow snow--far snow--alt"></div>
-				</div>
-			{% endif %}
+				<div class="snow snow--far"></div>
+				<div class="snow snow--far snow--alt"></div>
+			</div>
 
-			{%  if temp >= spring and temp<winter%}
-				<div id="leaves">
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-					<i></i>
-				</div>
-			{% endif %}
+
+			<div hidden id="leaves">
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
 			<div class="flex justify-between">
 
 				<div class=" align-text flex justify-between">
@@ -445,23 +454,4 @@
 			</div>
 		</body>
 	</body>
-</html></header>{% block body %}{% endblock %}<hr style="border: 3px solid #000000;"><footer class="d-flex justify-content-between">
-<div></div>
-<div class="ml-6 align-text">
-	<h2>Kontaktai</h2>
-	<p>8 632 22125</p>
-	<p>mrdentist@dent.lt</p>
-</div>
-<div class="align-text">
-	<h2 class="mb-6">Vieta</h2>
-	<p>Studentų g. 50, Kaunas 51368</p>
-</div>
-<div class="mr-6 align-text">
-	<h2>Darbo laikas</h2>
-	<p>I - IV 9:00 - 20:00</p>
-	<p>V 9:00 - 18:00</p>
-	<p>VI - VII nedirbame</p>
-</div>
-<div>
-	<img src="/logo.png">
-</div></footer></body></html>
+</html></body></html></header>{% block body %}{% endblock %}<hr style="border: 3px solid #000000;"><footer class="d-flex justify-content-between"><div></div><div class="ml-6 align-text"><h2>Kontaktai</h2><p>8 632 22125</p><p>mrdentist@dent.lt</p></div><div class="align-text"><h2 class="mb-6">Vieta</h2><p>Studentų g. 50, Kaunas 51368</p></div><div class="mr-6 align-text"><h2>Darbo laikas</h2><p>I - IV 9:00 - 20:00</p><p>V 9:00 - 18:00</p><p>VI - VII nedirbame</p></div><div><img src="/logo.png"></div></footer></body></html>

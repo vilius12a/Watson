@@ -3,12 +3,13 @@
 {% block title %}Meeting{% endblock %}
 
 {% block body %}
-    <h1>Meeting</h1>
+    <div class="row m-2" style="font-weight: bold; font-size: 25px; padding-top: 20px;">
+        Pasirinktas susitikimas:
+    </div>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
                 <th>Data</th>
                 <th>Daktaras</th>
                 <th>Pacientas</th>
@@ -16,7 +17,6 @@
                 <th>Statusas</th>
             </tr>
             <tr>
-                <td>{{ meeting.id }}</td>
                 <td>{{ meeting.date ? meeting.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ meeting.doctor.name }} {{ meeting.doctor.surname }}</td>
                 <td>{{ meeting.patient.name }} {{ meeting.patient.surname }}</td>
@@ -30,10 +30,22 @@
         </tbody>
     </table>
 
-    <a href="{{ path('meeting_index') }}">back to list</a>
+    <div class="row m-2" style="font-weight: bold; font-size: 1rem; padding-top: 10px;">
+        Aprašymas:
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="background-color: #24b8f7; width: 400px;">{{ meeting.description }}</li>
+    </ul>
 
     {% if is_granted('ROLE_DOCTOR') %}
-        <a href="{{ path('meeting_edit', {'id': meeting.id}) }}">edit</a>
-        {{ include('meeting/_delete_form.html.twig') }}
+        <div class="row justify-content-center m-2">
+            <a class="btn btn-dark" style="width: 120px;" href="{{ path('meeting_edit', {'id': meeting.id}) }}">Konfigūruoti</a>
+            {{ include('meeting/_delete_form.html.twig') }}
+        </div>
     {% endif %}
+
+    <div class="row justify-content-center m-2", style="padding-top: 50px;">
+        <a class="btn btn-lg btn-primary" style="width: 200px;" href="{{ path('meeting_index') }}">Grįžti į sąrašą</a>
+    </div>
+
 {% endblock %}

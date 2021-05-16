@@ -23,7 +23,43 @@
 			background-color: white;
 		}
 	</style>
-<div class="p-6 mb-25">
-	<p class="rcorners">Information about us</p>
-</div>{% endblock %}
+
+<div class="row" style="margin-bottom: 40px;">
+	<div class="col d-flex flex-row-reverse">
+		<div id="carouselExampleControls" class="carousel carousel-dark slide carousel-fade" style="width: 600px; height: 600px; margin-top: 50px;" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="/officeoutside.jpg" style="width: 600px; height: 600px;" class="d-block rounded border border-dark" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5 class="font-weight-bold">Platus paslaugų pasirinkimas</h5>
+						<p class="font-weight-bold">Naujos paslaugos!</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="/happyperson.png" style="width: 600px; height: 600px" class="d-block rounded border border-dark" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5 class="font-weight-bold">Patenktini klientai</h5>
+						<p class="font-weight-bold">Geri atsiliepimai apie mus!</p>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</div>
+	<div class="col">
+		<div class="p-6 mb-25" style="margin-top: 25px;">
+			<p class="rcorners">Mes esame tokia ir tokia klinika ir teikiame tokias ir tokias paslaugas!
+				Arba kitaip tariant čia parašyta informacija apie kliniką.</p>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
 

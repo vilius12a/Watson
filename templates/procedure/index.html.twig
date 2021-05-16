@@ -3,35 +3,41 @@
 {% block title %}Procedure index{% endblock %}
 
 {% block body %}
-    <h1>Procedure index</h1>
+    {% if procedures|length > 0 %}
+        <div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
+            Procedūros
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Cost</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for procedure in procedures %}
-            <tr>
-                <td>{{ procedure.id }}</td>
-                <td>{{ procedure.name }}</td>
-                <td>{{ procedure.cost }}</td>
-                <td>
-                    <a href="{{ path('procedure_show', {'id': procedure.id}) }}">show</a>
-                    <a href="{{ path('procedure_edit', {'id': procedure.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Pavadinimas</th>
+                    <th>Kaina</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for procedure in procedures %}
+                <tr>
+                    <td>{{ procedure.name }}</td>
+                    <td>{{ procedure.cost }}</td>
+                    <td>
+                        <a class="btn btn-dark btn-sm" href="{{ path('procedure_show', {'id': procedure.id}) }}">Peržiūrėti</a>
+                        <a class="btn btn-dark btn-sm" href="{{ path('procedure_edit', {'id': procedure.id}) }}">Konfigūruoti</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 
-    <a href="{{ path('procedure_new') }}">Create new</a>
+    {% if procedures|length < 1 %}
+        <div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
+            Procedūrų nėra
+        </div>
+    {% endif %}
+
+    <div class="m-2" style="padding-top: 20px;">
+        <a class="btn btn btn-primary" style="width: 160px;" href="{{ path('procedure_new') }}">Sukurti naują</a>
+    </div>
 {% endblock %}

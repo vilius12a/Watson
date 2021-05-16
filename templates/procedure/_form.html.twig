@@ -1,4 +1,19 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="form-group mx-auto" style="width: 485px;">
+        {{ form_row(form.name, {
+            label: 'Procedūros pavadinimas',
+            label_attr: { style: 'font-weight: bold' },
+            attr: { class: 'form-control', placeholder: 'įveskite procedūros pavadinimą' },
+        }) }}
+        <div class="p-2"></div>
+        {{ form_row(form.cost, {
+            label: 'Procedūros kaina',
+            label_attr: { style: 'font-weight: bold' },
+            attr: { class: 'form-control', placeholder: 'įveskite kainą' },
+        }) }}
+    </div>
+
+    <div class="row justify-content-center m-2">
+        <button class="btn btn-dark" style="width: 100px;">{{ button_label|default('Išsaugoti') }}</button>
+    </div>
 {{ form_end(form) }}

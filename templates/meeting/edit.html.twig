@@ -3,11 +3,15 @@
 {% block title %}Edit Meeting{% endblock %}
 
 {% block body %}
-    <h1>Edit Meeting</h1>
+    <div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
+        Konfiguruoti susitikimą:
+    </div>
 
-    {{ include('meeting/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('meeting_index') }}">back to list</a>
-
+    {{ include('meeting/_form.html.twig', {'button_label': 'Naujinti'}) }}
     {{ include('meeting/_delete_form.html.twig') }}
+
+    <div class="row justify-content-center m-2", style="padding-top: 50px;">
+        <a class="btn btn-lg btn-primary" style="width: 200px;" href="{{ path('meeting_index') }}">Grįžti į sąrašą</a>
+    </div>
+
 {% endblock %}

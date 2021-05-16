@@ -1,4 +1,44 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="form-group mx-auto" style="width: 485px;">
+    {{ form_row(form.date, {
+        label: 'Susitikimo data',
+        label_attr: { style: 'font-weight: bold' },
+        date_attr: { class: 'form-control'},
+    }) }}
+    <div class="p-2"></div>
+    {{ form_row(form.doctor, {
+        label: 'Daktaras',
+        label_attr: { style: 'font-weight: bold' },
+        attr: { class: 'form-control'},
+    }) }}
+    <div class="p-2"></div>
+    {{ form_row(form.patient, {
+        label: 'Pacientas',
+        label_attr: { style: 'font-weight: bold' },
+        attr: { class: 'form-control'},
+    }) }}
+    <div class="p-2"></div>
+    {{ form_row(form.procedures, {
+        label: 'Procedūros',
+        label_attr: { style: 'font-weight: bold' },
+        attr: { class: 'form-control'},
+    }) }}
+    <div class="p-2"></div>
+    {{ form_row(form.status, {
+        label: 'Susitikimo statusas',
+        label_attr: { style: 'font-weight: bold' },
+        attr: { class: 'form-control'},
+    }) }}
+    <div class="p-2"></div>
+    {{ form_row(form.description, {
+        label: 'Susitikimo aprašymas',
+        label_attr: { style: 'font-weight: bold' },
+        attr: { class: 'form-control', placeholder: 'įveskite susitikimo aprašymą'},
+    }) }}
+</div>
+
+<div class="row justify-content-center m-2">
+    <button class="btn btn-dark" style="width: 100px;">{{ button_label|default('Išsaugoti') }}</button>
+</div>
 {{ form_end(form) }}
+

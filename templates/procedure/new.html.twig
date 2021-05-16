@@ -3,9 +3,13 @@
 {% block title %}New Procedure{% endblock %}
 
 {% block body %}
-    <h1>Create new Procedure</h1>
+    <div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
+        Sukurti naują procedūrą:
+    </div>
 
     {{ include('procedure/_form.html.twig') }}
 
-    <a href="{{ path('procedure_index') }}">back to list</a>
+    <div class="row justify-content-center m-2", style="padding-top: 50px;">
+        <a class="btn btn-lg btn-primary" style="width: 200px;" href="{{ path('procedure_index') }}">Grįžti į sąrašą</a>
+    </div>
 {% endblock %}

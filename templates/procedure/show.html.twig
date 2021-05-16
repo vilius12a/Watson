@@ -3,28 +3,29 @@
 {% block title %}Procedure{% endblock %}
 
 {% block body %}
-    <h1>Procedure</h1>
+    <div class="row m-2" style="font-weight: bold; font-size: 25px; padding-top: 20px">
+        Pasirinkta procedūra:
+    </div>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ procedure.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Pavadinimas</th>
                 <td>{{ procedure.name }}</td>
             </tr>
             <tr>
-                <th>Cost</th>
+                <th>Kaina</th>
                 <td>{{ procedure.cost }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('procedure_index') }}">back to list</a>
+    <div class="row justify-content-center m-2">
+        <a class="btn btn-dark" style="width: 120px;" href="{{ path('procedure_edit', {'id': procedure.id}) }}">Konfigūruoti</a>
+        {{ include('procedure/_delete_form.html.twig') }}
+    </div>
 
-    <a href="{{ path('procedure_edit', {'id': procedure.id}) }}">edit</a>
-
-    {{ include('procedure/_delete_form.html.twig') }}
+    <div class="row justify-content-center m-2", style="padding-top: 50px;">
+        <a class="btn btn-lg btn-primary" style="width: 200px;" href="{{ path('procedure_index') }}">Grįžti į sąrašą</a>
+    </div>
 {% endblock %}

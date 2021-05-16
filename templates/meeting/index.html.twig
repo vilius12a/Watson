@@ -3,49 +3,56 @@
 {% block title %}Meeting index{% endblock %}
 
 {% block body %}
-    <h1>Meeting index</h1>
+    {% if meetings|length > 0 %}
+        <div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
+            Susitikimai
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Data</th>
-                <th>Daktaras</th>
-                <th>Pacientas</th>
-                <th>Procedūros</th>
-                <th>Statusas</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for meeting in meetings %}
-            <tr>
-                <td>{{ meeting.id }}</td>
-                <td>{{ meeting.date ? meeting.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ meeting.doctor.name }} {{ meeting.doctor.surname }}</td>
-                <td>{{ meeting.patient.name }} {{ meeting.patient.surname }}</td>
-                <td>
-                    {% for procedure in meeting.procedures %}
-                        {{ procedure.name }}<br>
-                    {% endfor %}
-                </td>
-                <td>{{ constant('App\\Entity\\Meeting::STATUS_DESCRIPTIONS')[meeting.status] }}</td>
-                <td>
-                    <a href="{{ path('meeting_show', {'id': meeting.id}) }}">show</a>
-                    {% if is_granted('ROLE_DOCTOR') %}
-                        <a href="{{ path('meeting_edit', {'id': meeting.id}) }}">edit</a>
-                    {% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Daktaras</th>
+                    <th>Pacientas</th>
+                    <th>Procedūros</th>
+                    <th>Statusas</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for meeting in meetings %}
+                <tr>
+                    <td>{{ meeting.date ? meeting.date|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ meeting.doctor.name }} {{ meeting.doctor.surname }}</td>
+                    <td>{{ meeting.patient.name }} {{ meeting.patient.surname }}</td>
+                    <td>
+                        {% for procedure in meeting.procedures %}
+                            {{ procedure.name }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>{{ constant('App\\Entity\\Meeting::STATUS_DESCRIPTIONS')[meeting.status] }}</td>
+                    <td>
+                        <a class="btn btn-dark btn-sm" href="{{ path('meeting_show', {'id': meeting.id}) }}">Peržiūrėti</a>
+
+                        {% if is_granted('ROLE_DOCTOR') %}
+                            <a class="btn btn-dark btn-sm" href="{{ path('meeting_edit', {'id': meeting.id}) }}">Konfiguruoti</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+    {% if meetings|length < 1 %}
+        <div class="row m-5 justify-content-center" style="font-weight: bold; font-size: 40px;">
+            Susitikimų nėra
+        </div>
+    {% endif %}
 
     {% if is_granted('ROLE_DOCTOR') %}
-        <a href="{{ path('meeting_new') }}">Create new</a>
+        <div class="m-2" style="padding-top: 20px;">
+            <a class="btn btn btn-primary" style="width: 160px;" href="{{ path('meeting_new') }}">Sukurti naują</a>
+        </div>
     {% endif %}
 {% endblock %}

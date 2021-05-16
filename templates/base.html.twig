@@ -434,6 +434,9 @@ document.getElementById("snow").setAttribute("hidden", "");
 							{% if is_granted('ROLE_DOCTOR') %}
 								<a class="dropdown-item rounded-0" href="{{ path('procedure_index') }}">Procedūros</a>
 							{% endif %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<a class="dropdown-item rounded-0" href="{{ path('admin') }}">Admin panelė</a>
+							{% endif %}
 							<a class="dropdown-item rounded-0" href="{{ path('app_user_settings') }}">Nustatymai</a>
 							<a class="dropdown-item rounded-0" href="{{ path('app_logout') }}">Atsijungti</a>
 						</div>

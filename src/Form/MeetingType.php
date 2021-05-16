@@ -12,6 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -76,7 +77,10 @@ class MeetingType extends AbstractType
                 'attr' => [
                     'class' => 'form-group',
                 ],
-            ]);
+            ])
+        ->add('description', TextareaType::class, [
+            'required' => false
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

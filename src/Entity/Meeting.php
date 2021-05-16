@@ -55,6 +55,11 @@ class Meeting
      */
     private $status = self::STATUS_CREATED;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->procedures = new ArrayCollection();
@@ -133,6 +138,18 @@ class Meeting
     public function setStatus(int $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

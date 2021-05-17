@@ -46,7 +46,7 @@ class User implements UserInterface
      * @var bool
      * @ORM\Column(name="recieveNotifications", type="boolean", options={"default" : true})
      */
-    private $recieveNotifications;
+    private $recieveNotifications = true;
 
     /**
      * @var string

@@ -8,7 +8,7 @@
             Susitikimai
         </div>
 
-        <table class="table">
+        <table class="table table-info table-hover">
             <thead>
                 <tr>
                     <th>Data</th>
@@ -23,8 +23,16 @@
             {% for meeting in meetings %}
                 <tr>
                     <td>{{ meeting.date ? meeting.date|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ meeting.doctor.name }} {{ meeting.doctor.surname }}</td>
+                    {% if meeting.doctor.name is empty %}
+                        <td>{{ meeting.doctor.email }}</td>
+                    {% else %}
+                        <td>{{ meeting.doctor.name }} {{ meeting.doctor.surname }}</td>
+                    {% endif %}
+                    {% if meeting.patient.name is empty %}
+                        <td>{{ meeting.patient.email }}</td>
+                    {% else %}
                     <td>{{ meeting.patient.name }} {{ meeting.patient.surname }}</td>
+                    {% endif %}
                     <td>
                         {% for procedure in meeting.procedures %}
                             {{ procedure.name }}<br>

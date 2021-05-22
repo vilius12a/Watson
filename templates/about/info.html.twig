@@ -5,59 +5,62 @@
 
 {% block body %}
 
-<style>
-	thead{
-		font-size: 60px;
-		font-weight: normal;
-		text-align: center;
-	}
+	<style>
+		thead {
+			font-size: 60px;
+			font-weight: normal;
+			text-align: center;
+		}
 
-	.header {
-		padding: 30px;
-		text-align: center;
-		font-size: 35px;
-		margin-top: 20px;
-	}
+		.header {
+			padding: 30px;
+			text-align: center;
+			font-size: 35px;
+			margin-top: 20px;
+		}
 
-	.column {
-		float: left;
-		width: 33.33%;
-		padding: 10px;
-	}
+		.column {
+			float: left;
+			width: 33.33%;
+			padding: 10px;
+		}
 
-	.row:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-
-
-
-</style>
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	</style>
 
 
-
-<div class="header">
-  <h2>Kodėl rinktis mus?</h2>
-</div>
-
-<div class="row">
-  	<div class="column" style="background-color:#24b8f7;">
-		<h2>Geriausi specialistai</h2>
-		Mūsų kolektyvas surinktas tik iš geriausių, aukštų kvalivikacijų specialistų. Jie gebės jus konsultuoti visais iškilusiais klausimais.
-		...
+	<div class="header">
+		<h2>Kodėl rinktis mus?</h2>
 	</div>
-  	<div class="column" style="background-color:#24c8f7;">
-		<h2>Naujausia įranga</h2>
-		Naudojame pačią naujausią įrangą kuri leidžia pamiršti senus gydymo metodus. Su šia įranga užtikriname aukščiausios kokybės priežiūrą.
-		...
+
+	<div class="row">
+
+		<div class="column" style="background-color:#24b8f7;">
+
+			<h2>Geriausi specialistai</h2>
+			Mūsų kolektyvas surinktas tik iš geriausių, aukštų kvalivikacijų specialistų. Jie gebės jus konsultuoti visais iškilusiais klausimais.
+																																			...
+			<br>
+			<img src="Doctor.jpg" class="figure-img img-fluid rounded" width="260" height="140">
+		</div>
+		<div class="column" style="background-color:#24c8f7;">
+			<h2>Naujausia įranga</h2>
+			Naudojame pačią naujausią įrangą kuri leidžia pamiršti senus gydymo metodus. Su šia įranga užtikriname aukščiausios kokybės priežiūrą.
+																																			...
+			<br>
+			<img src="officeoutside.jpg" class="figure-img img-fluid rounded" width="260" height="140">
+		</div>
+		<div class="column" style="background-color:#24d8f7;">
+			<h2>Maloni aplinka</h2>
+			Stengiamės kurti molonią aplinką tiek pacientams tiek darbuotojams. Palaikome optimalią kambario temperatūrą, drėgmę ir t.t.
+																																			...<br>
+			<img src="happyperson.png" class=" figure-img img-fluid rounded" width=" 260" height=" 140">
+		</div>
 	</div>
-  	<div class="column" style="background-color:#24d8f7;">
-		<h2>Maloni aplinka</h2>
-		Stengiamės kurti molonią aplinką tiek pacientams tiek darbuotojams. Palaikome optimalią kambario temperatūrą, drėgmę ir t.t.
-		...
-	</div> 
-</div>
 
 
 {% endblock %}

@@ -313,6 +313,69 @@
 					opacity: 0;
 				}
 			}
+
+			@import url("https://fonts.googleapis.com/css2?family=Titan+One &display=swap");
+			.wrapper {
+				width: 100vw;
+				text-align: center;
+				span {
+					-webkit-text-stroke-width: 1.25px;
+					-webkit-text-stroke-color: #F8F8FF;
+					font-size: 100px;
+					text-shadow: 0 0 #F8F8FF, 0 0 #F8F8FF;
+					transform: translate(0, 100%) rotate(4deg);
+					animation: jump 2s ease-in-out infinite;
+					display: inline-block;
+					font-family: "Titan One", cursive;
+					color: #fff;
+
+					@for $i from 1 through 7 {
+						&:nth-child(#{$i}) {
+							animation-delay: 120ms * $i;
+						}
+					}
+				}
+			}
+			@keyframes jump {
+				33% {
+					text-shadow: 0 60px #F8F8FF, 0 150px #F8F8FF;
+				}
+				50% {
+					transform: translate(0, 0) rotate(-4deg);
+					text-shadow: 0 0 #F8F8FF, 0 0 #F8F8FF;
+				}
+				66.67% {
+					text-shadow: 0 -60px #F8F8FF, 0 -150px #F8F8FF;
+				}
+			}
+			@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy &display=swap");
+
+			.loading {
+				color: #fff;
+				font-size: 6em;
+				font-weight: bold;
+				postition: relative;
+				font-family: " luckiest guy", cursive;
+				text-shadow: 0 0.1em 20px rgba(0, 0, 0, 1), 0.05em -0.03em 0 rgba(0, 0, 0, 1), 0.05em 0.005em 0 rgba(0, 0, 0, 1), 0 0.08em 0 rgba(0, 0, 0, 1), 0.05em 0.08em 0 rgba(0, 0, 0, 1), 0 -0.03em 0 rgba(0, 0, 0, 1), -0.03em -0.03em 0 rgba(0, 0, 0, 1), -0.03em 0.08em 0 rgba(0, 0, 0, 1), -0.03em 0 0 rgba(0, 0, 0, 1);
+			}
+			.loading span {
+				display: inline-block;
+				animation-name: loading;
+				animation-duration: 5s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+			.loading span:nth-child(2) {
+				animation-delay: 0.3s;
+			}
+			@keyframes loading {
+				0% {
+					transform: rotateY(360deg);
+				}
+				80% {
+					transform: rotateY(360deg);
+				}
+			}
 		</style>
 
 
@@ -456,4 +519,4 @@ document.getElementById("snow").setAttribute("hidden", "");
 			</div>
 		</body>
 	</body>
-</html></body></html></header>{% block body %}{% endblock %}<hr style="border: 3px solid #000000;"><footer class="d-flex justify-content-between"><div></div><div class="ml-6 align-text"><h2>Kontaktai</h2><p>8 632 22125</p><p>mrdentist@dent.lt</p></div><div class="align-text"><h2 class="mb-6">Vieta</h2><p>Studentų g. 50, Kaunas 51368</p></div><div class="mr-6 align-text"><h2>Darbo laikas</h2><p>I - IV 9:00 - 20:00</p><p>V 9:00 - 18:00</p><p>VI - VII nedirbame</p></div><div><img src="/logo.png"></div></footer></body></html>
+</html></body></html></header>{% block body %}{% endblock %}<hr style="border: 3px solid #000000;"><footer class="d-flex justify-content-between"><div></div><div class="ml-6 align-text"><h2>Kontaktai</h2><p>8 632 22125</p><p>mrdentist@dent.lt</p></div><div class="align-text"><h2 class="mb-6">Vieta</h2><p>Studentų g. 50, Kaunas 51368</p></div><div class="mr-6 align-text"><h2>Darbo laikas</h2><p>I - IV 9:00 - 20:00</p><p>V 9:00 - 18:00</p><p>VI - VII nedirbame</p></div><div style="" class="loading"><span>WATSON</span></div></footer></body></html>

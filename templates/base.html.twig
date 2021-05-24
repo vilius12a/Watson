@@ -486,37 +486,45 @@ document.getElementById("snow").setAttribute("hidden", "");
 								Informacija</a>
 						</div>
 					</div>
-				</div>
+					{% if app.user %}
+						<div style="margin-left: 5px;">
+							<button id="btn" type="button" class="btn login-button rounded-0">Dantų vizualizacija</button>
 
-				{% if app.user %}
-					<div class="dropdown ">
-						<button class="btn  rounded-0 login-button">{{ app.user.username }}</button>
-						<div class="dropdown-content">
-							<a class="dropdown-item rounded-0" href="{{ path('meeting_index') }}">Mano susitikimai</a>
-							{% if is_granted('ROLE_DOCTOR') %}
-								<a class="dropdown-item rounded-0" href="{{ path('procedure_index') }}">Procedūros</a>
-							{% endif %}
-							{% if is_granted('ROLE_ADMIN') %}
-								<a class="dropdown-item rounded-0" href="{{ path('admin') }}">Admin panelė</a>
-							{% endif %}
-							<a class="dropdown-item rounded-0" href="{{ path('app_user_settings') }}">Nustatymai</a>
-							<a class="dropdown-item rounded-0" href="{{ path('app_logout') }}">Atsijungti</a>
 						</div>
+						{%endif%}
+
 					</div>
 
-					<div class="dropdown-content"></div>
-				{% else %}
-					<div class="">
-						<a class="btn  rounded-0 login-button" href="{{ path('app_login') }}">
-							Prisijungti
-							<br></a>
-						<a class="btn  rounded-0 login-button" href="{{ path('app_register') }}">
-							Registruotis
-							<br></a>
-					</div>
-				{% endif %}
+					{% if app.user %}
+						<div class="dropdown ">
+							<button class="btn  rounded-0 login-button">{{ app.user.username }}</button>
+							<div class="dropdown-content">
+								<a class="dropdown-item rounded-0" href="{{ path('meeting_index') }}">Mano susitikimai</a>
+								{% if is_granted('ROLE_DOCTOR') %}
+									<a class="dropdown-item rounded-0" href="{{ path('procedure_index') }}">Procedūros</a>
+								{% endif %}
+								{% if is_granted('ROLE_ADMIN') %}
+									<a class="dropdown-item rounded-0" href="{{ path('admin') }}">Admin panelė</a>
+								{% endif %}
+								<a class="dropdown-item rounded-0" href="{{ path('app_user_settings') }}">Nustatymai</a>
+								<a class="dropdown-item rounded-0" href="{{ path('app_logout') }}">Atsijungti</a>
+							</div>
+						</div>
 
-			</div>
+						<div class="dropdown-content"></div>
+					{% else %}
+						<div class="">
+							<a class="btn  rounded-0 login-button" href="{{ path('app_login') }}">
+								Prisijungti
+								<br></a>
+							<a class="btn  rounded-0 login-button" href="{{ path('app_register') }}">
+								Registruotis
+								<br></a>
+						</div>
+					{% endif %}
+
+				</div>
+			</body>
 		</body>
 	</body>
 </html></body></html></header>{% block body %}{% endblock %}<hr style="border: 3px solid #000000;"><footer class="d-flex justify-content-between"><div></div><div class="ml-6 align-text"><h2>Kontaktai</h2><p>8 632 22125</p><p>mrdentist@dent.lt</p></div><div class="align-text"><h2 class="mb-6">Vieta</h2><p>Studentų g. 50, Kaunas 51368</p></div><div class="mr-6 align-text"><h2>Darbo laikas</h2><p>I - IV 9:00 - 20:00</p><p>V 9:00 - 18:00</p><p>VI - VII nedirbame</p></div><div style="" class="loading"><span>WATSON</span></div></footer></body></html>
